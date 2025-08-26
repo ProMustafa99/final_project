@@ -1,0 +1,83 @@
+[
+    {
+      "id": 1,
+      "name": "Hashem Restaurant",
+      "location": {"lat": 31.9539, "lng": 35.9304},
+      "rate": 4.7,
+      "category": "Middle Eastern",
+      "address": "Al Balad, Amman"
+    },
+    {
+      "id": 2,
+      "name": "Reem Al Bawadi",
+      "location": {"lat": 31.9560, "lng": 35.9340},
+      "rate": 4.5,
+      "category": "Jordanian",
+      "address": "Rainbow Street, Amman"
+    },
+    {
+      "id": 3,
+      "name": "Sufra Restaurant",
+      "location": {"lat": 31.9530, "lng": 35.9345},
+      "rate": 4.6,
+      "category": "Middle Eastern",
+      "address": "Jabal Amman, Amman"
+    },
+    {
+      "id": 4,
+      "name": "Shams El Balad",
+      "location": {"lat": 31.9505, "lng": 35.9330},
+      "rate": 4.4,
+      "category": "Café",
+      "address": "Abdoun, Amman"
+    },
+    {
+      "id": 5,
+      "name": "Wild Jordan Cafe",
+      "location": {"lat": 31.9518, "lng": 35.9335},
+      "rate": 4.8,
+      "category": "Café",
+      "address": "Jabal Amman, Amman"
+    },
+    {
+      "id": 6,
+      "name": "Al Quds Restaurant",
+      "location": {"lat": 31.9545, "lng": 35.9290},
+      "rate": 4.3,
+      "category": "Middle Eastern",
+      "address": "Downtown, Amman"
+    },
+    {
+      "id": 7,
+      "name": "Books@Cafe",
+      "location": {"lat": 31.9550, "lng": 35.9315},
+      "rate": 4.6,
+      "category": "Café",
+      "address": "Jabal Amman, Amman"
+    },
+    {
+      "id": 8,
+      "name": "Kan Zaman",
+      "location": {"lat": 31.9580, "lng": 35.9270},
+      "rate": 4.5,
+      "category": "Jordanian",
+      "address": "Old Town, Amman"
+    },
+    {
+      "id": 9,
+      "name": "Cantaloupe Gastro Pub",
+      "location": {"lat": 31.9500, "lng": 35.9380},
+      "rate": 4.7,
+      "category": "Pub",
+      "address": "Rainbow Street, Amman"
+    },
+    {
+      "id": 10,
+      "name": "Fakhreldin Restaurant",
+      "location": {"lat": 31.9565, "lng": 35.9350},
+      "rate": 4.8,
+      "category": "Lebanese",
+      "address": "Abdoun, Amman"
+    }
+  ]
+  
