@@ -47,18 +47,16 @@ class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120, // a bit larger to prevent pixel overflow
-      clipBehavior: Clip.none, // allow shadows to render outside
+      height: 100,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.grey.shade50,
-            Colors.white,
-            Colors.grey.shade50,
-          ],
-        ),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: _buildContent(),
     );
@@ -74,98 +72,86 @@ class _CategoriesState extends State<Categories> {
   Widget _buildCategoriesList() {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.symmetric(horizontal: 16), // ⬅ no vertical padding
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       itemCount: categories.length,
       itemBuilder: (context, index) {
-        return _buildCategoryCard(categories[index], index);
+        return _buildCategoryItem(categories[index], index);
       },
     );
   }
 
-  Widget _buildCategoryCard(CategoryModel category, int index) {
-    final colors = [
-      [Colors.blue.shade400, Colors.blue.shade600],
-      [Colors.purple.shade400, Colors.purple.shade600],
-      [Colors.green.shade400, Colors.green.shade600],
-      [Colors.orange.shade400, Colors.orange.shade600],
-      [Colors.pink.shade400, Colors.pink.shade600],
-      [Colors.indigo.shade400, Colors.indigo.shade600],
-      [Colors.teal.shade400, Colors.teal.shade600],
-      [Colors.amber.shade400, Colors.amber.shade600],
-    ];
-
-    final colorPair = colors[index % colors.length];
-
+  Widget _buildCategoryItem(CategoryModel category, int index) {
     return Container(
-      margin: const EdgeInsets.only(right: 12),
+      margin: const EdgeInsets.only(right: 16),
       child: Material(
-        elevation: 8,
-        borderRadius: BorderRadius.circular(16),
-        shadowColor: colorPair[0].withOpacity(0.3),
-        child: Container(
-          width: 140,
-          height: 90,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: colorPair,
-            ),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(16),
-              onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Selected: ${category.name}'),
-                    backgroundColor: colorPair[0],
-                    behavior: SnackBarBehavior.floating,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                );
-              },
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Icon(
-                        _getCategoryIcon(category.name),
-                        color: Colors.white,
-                        size: 24,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      category.name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(20),
+          onTap: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Selected: ${category.name}'),
+                behavior: SnackBarBehavior.floating,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
+            );
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            decoration: BoxDecoration(
+              color: _getCategoryColor(index).withOpacity(0.1),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: _getCategoryColor(index).withOpacity(0.3),
+                width: 1,
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: _getCategoryColor(index),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(
+                    _getCategoryIcon(category.name),
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  category.name,
+                  style: TextStyle(
+                    color: _getCategoryColor(index),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Color _getCategoryColor(int index) {
+    final colors = [
+      const Color(0xFF6366F1), // Indigo
+      const Color(0xFF8B5CF6), // Purple
+      const Color(0xFF06B6D4), // Cyan
+      const Color(0xFF10B981), // Emerald
+      const Color(0xFFF59E0B), // Amber
+      const Color(0xFFEF4444), // Red
+      const Color(0xFFEC4899), // Pink
+      const Color(0xFF84CC16), // Lime
+    ];
+    return colors[index % colors.length];
   }
 
   IconData _getCategoryIcon(String categoryName) {
