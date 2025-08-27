@@ -6,6 +6,7 @@ import 'package:final_project/models/resturant.model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:final_project/widgets/loading_state.dart';
 import 'package:final_project/widgets/error_state.dart';
+import 'package:final_project/widgets/custom_app_bar.dart';
 
 class AllRestaurants extends ConsumerStatefulWidget {
   const AllRestaurants({super.key});
@@ -26,7 +27,24 @@ class _AllRestaurantsState extends ConsumerState<AllRestaurants> {
     final restaurantsAsync = ref.watch(mainProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      appBar: CustomAppBar(
+        title: 'All Restaurants',
+        leadingIcon: Icons.person,
+        onLeadingPressed: () {
+          // Handle profile button
+        },
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Colors.grey.shade700,
+            ),
+            onPressed: () {
+              // Handle search
+            },
+          ),
+        ],
+      ),
       body: Column(
         children: [
           const Categories(),

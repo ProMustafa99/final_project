@@ -2,6 +2,7 @@ import 'package:final_project/riverpod_provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:final_project/widgets/custom_app_bar.dart';
 
 class RestaurantDetails extends ConsumerStatefulWidget {
   final int restaurantId;
@@ -26,12 +27,10 @@ class _RestaurantDetailsState extends ConsumerState<RestaurantDetails> {
   Widget build(BuildContext context) {
     final restaurantDetails = ref.watch(restaurantDetailsProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Restaurant Details'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go('/'),
-        ),
+      appBar: CustomAppBar(
+        title: 'Restaurant Details',
+        leadingIcon: Icons.arrow_back,
+        onLeadingPressed: () => context.go('/'),
       ),
       body: restaurantDetails.when(
         data: (restaurant) {
