@@ -22,13 +22,28 @@ class _AllRestaurantsState extends ConsumerState<AllRestaurants> {
 
     return Scaffold(
       appBar: AppBar(title: Text('Restaurants')),
-      body: ListView.builder(
-        itemCount: restaurantsAsync.valueOrNull?.length ?? 0,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(restaurantsAsync.valueOrNull?[index].name ?? ''),
+      body: restaurantsAsync.when(
+        data: (restaurants) {
+          if (restaurants.isEmpty) {
+            return const Center(child: Text('No restaurants found'));
+          }
+          return ListView.builder(
+            itemCount: restaurants.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(restaurants[index].name),
+                subtitle: Text(restaurants[index].address),
+                onTap: () {
+                  debugPrint("restaurant: ${restaurants[index].name}");
+                },
+              );
+            },
           );
         },
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error, stack) => Center(
+          child: Text('Error: $error'),
+        ),
       ),
     );
   }

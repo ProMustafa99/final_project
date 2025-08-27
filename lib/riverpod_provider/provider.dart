@@ -12,6 +12,15 @@ class MainProvider extends AsyncNotifier<List<ResturantModel>> {
     final fetchedRestaurants = await ResturantApi().getResturants();
     state = AsyncValue.data(fetchedRestaurants);
   }
+
+  Future<void> getRestaurantDetails(int id) async {
+    final fetchedRestaurantDetails = await ResturantApi().getRestaurantDetails(id);
+    if (fetchedRestaurantDetails != null) {
+      state = AsyncValue.data([fetchedRestaurantDetails]);
+    } else {
+      state = const AsyncValue.data([]);
+    }
+  }
 }
 
 final mainProvider = AsyncNotifierProvider<MainProvider, List<ResturantModel>>(MainProvider.new);

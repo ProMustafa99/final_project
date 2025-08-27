@@ -10,19 +10,53 @@
 include: package:flutter_lints/flutter.yaml
 
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at https://dart.dev/lints.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    ## 1. Error Prevention Rules
+    avoid_print: true
+    avoid_unnecessary_containers: true
+    avoid_web_libraries_in_flutter: true
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+    ## 2. Performance Rules
+    prefer_const_declarations: true
+    unnecessary_const: true
+    unnecessary_new: true
+
+    ## 3. Code Style Rules
+    camel_case_types: true
+    camel_case_extensions: true
+    file_names: true
+    library_names: true
+    non_constant_identifier_names: true
+    prefer_single_quotes: true
+    slash_for_doc_comments: true
+
+    ## 4. Flutter-Specific Rules
+    use_key_in_widget_constructors: true
+    prefer_const_constructors_in_immutables: true
+    always_use_package_imports: true
+
+    ## 5. Best Practices
+    avoid_empty_else: true
+    avoid_relative_lib_imports: true
+    avoid_returning_null_for_future: true
+    avoid_returning_null_for_void: true
+    avoid_slow_async_io: true
+    avoid_type_to_string: true
+    cancel_subscriptions: true
+    close_sinks: true
+    comment_references: true
+    one_member_abstracts: true
+
+    ## 6. Null Safety Rules
+    avoid_null_checks_in_equality_operators: true
+    prefer_if_null_operators: true
+    prefer_null_aware_operators: true
+
+    ## 7. Additional Useful Rules
+    prefer_typing_uninitialized_variables: true
+    sort_child_properties_last: true
+    use_full_hex_values_for_flutter_colors: true
+    use_rethrow_when_possible: true
+    valid_regexps: true

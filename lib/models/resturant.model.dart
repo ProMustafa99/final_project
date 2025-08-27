@@ -5,6 +5,7 @@ class ResturantModel {
   final Map<String, double> location;
   final double rate;
   final String category;
+  final String? image;
 
   ResturantModel({
     required this.id,
@@ -13,6 +14,7 @@ class ResturantModel {
     required this.location,
     required this.rate,
     required this.category,
+    this.image,
   });
 
   factory ResturantModel.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class ResturantModel {
       location: Map<String, double>.from(json['location']),
       rate: (json['rate'] is int) ? (json['rate'] as int).toDouble() : json['rate'] as double,
       category: json['category'] as String,
+      image: json['image'] as String?,
     );
   }
 }
