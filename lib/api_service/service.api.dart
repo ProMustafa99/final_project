@@ -17,7 +17,7 @@ class ApiException implements Exception {
 }
 
 class ServiceApi {
-  final Dio dio = Dio();
+  final Dio dio;
 
   // Cache for restaurants data
   List<ResturantModel>? _restaurantsCache;
@@ -28,8 +28,10 @@ class ServiceApi {
   // Cache duration (5 minutes)
   static const Duration _cacheDuration = Duration(minutes: 5);
 
-  ServiceApi() {
-    _setupDio();
+  ServiceApi({Dio? dio}) : dio = dio ?? Dio() {
+    if (dio == null) {
+      _setupDio();
+    }
   }
 
   void _setupDio() {
