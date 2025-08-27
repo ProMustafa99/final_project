@@ -78,14 +78,14 @@ class _GoogleMapTestState extends State<GoogleMapTest> {
                           : Colors.orange,
                 ),
                 const SizedBox(width: 8),
-                Text(
-                  _isMapReady 
-                      ? 'Map loaded successfully' 
-                      : _errorMessage != null 
-                          ? 'Map error: $_errorMessage' 
-                          : 'Loading map...',
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
+                // Text(
+                //   _isMapReady 
+                //       ? 'Map loaded successfully' 
+                //       : _errorMessage != null 
+                //           ? 'Map error: $_errorMessage' 
+                //           : 'Loading map...',
+                //   style: const TextStyle(fontWeight: FontWeight.w500),
+                // ),
                 if (_errorCount > 0) ...[
                   const Spacer(),
                   Text('Errors: $_errorCount'),
