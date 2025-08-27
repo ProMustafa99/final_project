@@ -1,4 +1,4 @@
-import 'package:final_project/api_service/resturant.api.dart';
+import 'package:final_project/api_service/service.api.dart';
 import 'package:final_project/models/resturant.model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
