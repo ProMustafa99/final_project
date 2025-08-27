@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:final_project/riverpod_provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
 class AllRestaurants extends ConsumerStatefulWidget {
   const AllRestaurants({super.key});
@@ -21,7 +22,7 @@ class _AllRestaurantsState extends ConsumerState<AllRestaurants> {
     final restaurantsAsync = ref.watch(mainProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Restaurants')),
+      appBar: AppBar(title: const Text('Home')),
       body: restaurantsAsync.when(
         data: (restaurants) {
           if (restaurants.isEmpty) {
@@ -35,6 +36,7 @@ class _AllRestaurantsState extends ConsumerState<AllRestaurants> {
                 subtitle: Text(restaurants[index].address),
                 onTap: () {
                   debugPrint("restaurant: ${restaurants[index].name}");
+                  context.go('/restaurant/${restaurants[index].id}');
                 },
               );
             },

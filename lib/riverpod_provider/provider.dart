@@ -9,18 +9,34 @@ class MainProvider extends AsyncNotifier<List<ResturantModel>> {
   }
 
   Future<void> fetchRestaurants() async {
-    final fetchedRestaurants = await ResturantApi().getResturants();
+    final fetchedRestaurants = await ServiceApi().getResturants();
     state = AsyncValue.data(fetchedRestaurants);
+  }
+}
+
+class RestaurantDetailsProvider extends AsyncNotifier<ResturantModel?> {
+  @override
+  Future<ResturantModel?> build() async {
+    return null;
   }
 
   Future<void> getRestaurantDetails(int id) async {
-    final fetchedRestaurantDetails = await ResturantApi().getRestaurantDetails(id);
+    state = const AsyncValue.loading();
+    final fetchedRestaurantDetails = await ServiceApi().getRestaurantDetails(
+      id,
+    );
     if (fetchedRestaurantDetails != null) {
-      state = AsyncValue.data([fetchedRestaurantDetails]);
+      state = AsyncValue.data(fetchedRestaurantDetails);
     } else {
-      state = const AsyncValue.data([]);
+      state = const AsyncValue.data(null);
     }
   }
 }
 
-final mainProvider = AsyncNotifierProvider<MainProvider, List<ResturantModel>>(MainProvider.new);
+final mainProvider = AsyncNotifierProvider<MainProvider, List<ResturantModel>>(
+  MainProvider.new,
+);
+final restaurantDetailsProvider =
+    AsyncNotifierProvider<RestaurantDetailsProvider, ResturantModel?>(
+      RestaurantDetailsProvider.new,
+    );

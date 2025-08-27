@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Middle Eastern",
+    "icon": "🍽️",
+    "description": "Traditional Middle Eastern cuisine",
+    "image": "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&h=300&fit=crop"
+  },
+  {
+    "id": 2,
+    "name": "Jordanian",
+    "icon": "🇯🇴",
+    "description": "Authentic Jordanian dishes",
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop"
+  },
+  {
+    "id": 3,
+    "name": "Café",
+    "icon": "☕",
+    "description": "Coffee shops and casual dining",
+    "image": "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400&h=300&fit=crop"
+  },
+  {
+    "id": 4,
+    "name": "Lebanese",
+    "icon": "🥙",
+    "description": "Lebanese cuisine and specialties",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop"
+  },
+  {
+    "id": 5,
+    "name": "Pub",
+    "icon": "🍺",
+    "description": "Pubs and bars with food",
+    "image": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400&h=300&fit=crop"
+  }
+]

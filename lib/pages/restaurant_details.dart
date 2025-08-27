@@ -1,9 +1,12 @@
 import 'package:final_project/riverpod_provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class RestaurantDetails extends ConsumerStatefulWidget {
-  const RestaurantDetails({super.key});
+  final int restaurantId;
+  
+  const RestaurantDetails({super.key, required this.restaurantId});
 
   @override
   ConsumerState<RestaurantDetails> createState() => _RestaurantDetailsState();
@@ -14,22 +17,27 @@ class _RestaurantDetailsState extends ConsumerState<RestaurantDetails> {
   @override
   void initState() {
     super.initState();
-    ref.read(mainProvider.notifier).getRestaurantDetails(1);
+    Future.microtask(() {
+      ref.read(restaurantDetailsProvider.notifier).getRestaurantDetails(widget.restaurantId);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final restaurantDetails = ref.watch(mainProvider);
+    final restaurantDetails = ref.watch(restaurantDetailsProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Restaurant Details'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.go('/'),
+        ),
       ),
       body: restaurantDetails.when(
-        data: (restaurants) {
-          if (restaurants.isEmpty) {
-            return const Center(child: Text('No restaurant details found'));
+        data: (restaurant) {
+          if (restaurant == null) {
+            return const Center(child: Text('Restaurant not found'));
           }
-          final restaurant = restaurants.first;
           return SingleChildScrollView(
             padding: const EdgeInsets.all(16),
             child: Column(
